@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,5 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        Storage::deleteDirectory('public/products');
+        Storage::makeDirectory('public/products');
+
+        $this->call(UserSeeder::class);
+
+        $this->call(CategorySeeder::class);
+
     }
 }
