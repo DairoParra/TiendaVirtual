@@ -25,11 +25,12 @@ class SizeSeeder extends Seeder
 
         foreach ($products as $product) {
 
-            foreach ($sizes as $size)
+            foreach ($sizes as $size){
 
                 $product->sizes()->create([
                     'name' => $size
-            ]);
+                ]);
+            }
         }
     }
 }
