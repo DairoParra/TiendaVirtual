@@ -18,25 +18,29 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Cell phones and Tablets',
-                'slug' => Str::slug('Cell phones and Tablets'),
+                'name' => 'Cell Phones & Tablets',
+                'slug' => Str::slug('Cell Phones & Tablets'),
                 'icon' =>  '<i class="fa-duotone fa-mobile"></i>' // '<font-awesome-icon icon="fa-duotone fa-mobile" />'
             ],
+
             [
-                'name' => 'TV, audio and video',
-                'slug' => Str::slug('TV, Audio and Video'),
+                'name' => 'TV, Audio & Video',
+                'slug' => Str::slug('TV, Audio & Video'),
                 'icon' => '<i class="fa-duotone fa-tv"></i>' // '<font-awesome-icon icon="fa-duotone fa-tv" />'
             ],
+
             [
-                'name' => 'Video games',
-                'slug' => Str::slug('Video games'),
+                'name' => 'Video Games',
+                'slug' => Str::slug('Video Games'),
                 'icon' => '<i class="fa-duotone fa-gamepad"></i>' // '<font-awesome-icon icon="fa-duotone fa-gamepad" />'
             ],
+
             [
                 'name' => 'Computers',
                 'slug' => Str::slug('Computers'),
                 'icon' => '<i class="fa-duotone fa-laptop"></i>' // '<font-awesome-icon icon="fa-duotone fa-laptop" />'
             ],
+
             [
                 'name' => 'Fashion',
                 'slug' => Str::slug('Fashion'),
