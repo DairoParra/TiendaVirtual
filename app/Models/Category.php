@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -11,12 +13,12 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug', 'image', 'icon'];
 
-    public function subCategories(): SubCategory
+    public function subCategories(): HasMany
     {
         return $this->hasMany(SubCategory::class);
     }
 
-    public function brands(): Brand
+    public function brands(): BelongsToMany
     {
         return $this->belongsToMany(Brand::class);
     }
