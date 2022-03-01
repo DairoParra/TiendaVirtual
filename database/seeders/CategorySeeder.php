@@ -21,31 +21,31 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Cell Phones & Tablets',
                 'slug' => Str::slug('Cell Phones & Tablets'),
-                'icon' =>  '<i class="fa-duotone fa-mobile"></i>' // '<font-awesome-icon icon="fa-duotone fa-mobile" />'
+                'icon' =>  '<i class="fa-solid fa-mobile"></i>'
             ],
 
             [
                 'name' => 'TV, Audio & Video',
                 'slug' => Str::slug('TV, Audio & Video'),
-                'icon' => '<i class="fa-duotone fa-tv"></i>' // '<font-awesome-icon icon="fa-duotone fa-tv" />'
+                'icon' => '<i class="fa-solid fa-tv"></i>'
             ],
 
             [
                 'name' => 'Video Games',
                 'slug' => Str::slug('Video Games'),
-                'icon' => '<i class="fa-duotone fa-gamepad"></i>' // '<font-awesome-icon icon="fa-duotone fa-gamepad" />'
+                'icon' => '<i class="fa-solid fa-gamepad"></i>'
             ],
 
             [
                 'name' => 'Computers',
                 'slug' => Str::slug('Computers'),
-                'icon' => '<i class="fa-duotone fa-laptop"></i>' // '<font-awesome-icon icon="fa-duotone fa-laptop" />'
+                'icon' => '<i class="fa-solid fa-laptop"></i>'
             ],
 
             [
                 'name' => 'Fashion',
                 'slug' => Str::slug('Fashion'),
-                'icon' => '<i class="fa-duotone fa-shirt"></i>' // '<font-awesome-icon icon="fa-duotone fa-shirt" />'
+                'icon' => '<i class="fa-solid fa-shirt"></i>'
             ]
         ];
 
