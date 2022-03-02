@@ -2,28 +2,32 @@
     #navigation-menu{
         height: calc(100vh - 4rem);
     }
-
     .navigation-link:hover .navigation-submenu{
         display: block !important;
     }
 </style>
 
-<header class="bg-gray-600 sticky top-0">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16">
-        <a class="flex flex-col items-center justify-center px-4 bg-white bg-opacity-25 text-white cursor-pointer h-full">
+<header class="bg-gray-600 sticky top-0" x-data="dropdown()">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 justify-between md:justify-start">
+        <a
+            :class="{'bg-opacity-100 text-orange-500' : open}"
+            x-on:click="show()"
+            class="flex flex-col items-center justify-center order-last md:order-first px-6 md:px-4 bg-white bg-opacity-25 text-white cursor-pointer h-full">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <span>Categories</span>
+            <span class="text-sm hidden md:block">Categories</span>
         </a>
 
         <a href="/" class="mx-6">
             <x-jet-application-mark class="block h-9 w-auto"></x-jet-application-mark>
         </a>
 
-        @livewire('search')
+        <div class="flex-1 hidden md:block">
+            @livewire('search')
+        </div>
 
-        <div class="mx-6 relative">
+        <div class="mx-6 relative hidden md:block">
             @auth
 
             <x-jet-dropdown align="right" width="48">
@@ -85,13 +89,17 @@
             @endauth
         </div>
 
-        @livewire('dropdown-cart')
+        <div class="hidden md:block">
+            @livewire('dropdown-cart')
+        </div>
 
     </div>
 
-    <nav id="navigation-menu" class="bg-gray-600 bg-opacity-25 w-full absolute">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-            <div class="grid grid-cols-4 h-full relative">
+    <nav id="navigation-menu"
+         x-show="open" style="display: none"
+         class="bg-gray-600 bg-opacity-25 w-full absolute">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full hidden md:block">
+            <div x-on:click.away="close()" class="grid grid-cols-4 h-full relative">
                 <ul class="bg-white">
                     @foreach($categories as $category)
                         <li class="navigation-link text-gray-500 hover:bg-orange-500 hover:text-white">
@@ -107,7 +115,6 @@
                             <div class="navigation-submenu bg-gray-100 absolute w-3/4 h-full top-0 right-0 hidden">
                                 <x-navigation-subcategories :category="$category"/>
                             </div>
-
                         </li>
                     @endforeach
                 </ul>
@@ -116,6 +123,69 @@
                     <x-navigation-subcategories :category="$categories->first()"/>
                 </div>
             </div>
+        </div>
+
+        <div class="bg-white h-full overflow-y-auto">
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-200 py-3 mb-2">
+                @livewire('search')
+            </div>
+
+            <ul>
+                @foreach($categories as $category)
+                    <li class="text-gray-500 hover:bg-orange-500 hover:text-white">
+                        <a href="" class="py-2 px-4 text-sm flex items-center" >
+
+                                <span class="flex justify-center w-9">
+                                    {!!$category->icon!!}
+                                </span>
+
+                            {{$category->name}}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
+            <p class="text-gray-500 px-6 my-2">Users</p>
+
+            @livewire('cart-mobile')
+
+            @auth
+                <a href="{{ route('profile.show') }}" class="py-2 px-4 text-sm flex items-center text-gray-500 hover:bg-orange-500 hover:text-white">
+                                <span class="flex justify-center w-9">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </span>
+                    Profile
+                </a>
+                <a href=""
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                   class="py-2 px-4 text-sm flex items-center text-gray-500 hover:bg-orange-500 hover:text-white">
+                                <span class="flex justify-center w-9">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </span>
+                    Sing Out
+                </a>
+
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+                @csrf
+                </form>
+
+            @else
+
+                <a href="{{ route('login') }}" class="py-2 px-4 text-sm flex items-center text-gray-500 hover:bg-orange-500 hover:text-white">
+                                <span class="flex justify-center w-9">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </span>
+                    Log in
+                </a>
+                <a href="{{ route('register') }}" class="py-2 px-4 text-sm flex items-center text-gray-500 hover:bg-orange-500 hover:text-white">
+                                <span class="flex justify-center w-9">
+                                    <i class="fa-solid fa-fingerprint"></i>
+                                </span>
+                    Register
+                </a>
+            @endauth
+
         </div>
     </nav>
 </header>
